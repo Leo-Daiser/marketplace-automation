@@ -1,0 +1,5 @@
+date,marketplace,campaign_id,campaign_name,sku,product_name,impressions,clicks,spend_rub,orders,revenue_rub,margin_rate,stock_units,ad_position,bid_rub
+2026-05-25,WB,WB-EDGE-01,Invalid Click Spike,IQ-EDGE-A,Edge Product A,10,12,500,1,900,0.3,40,3,45
+2026-05-25,Ozon,OZ-EDGE-02,Zero Revenue Spend,IQ-EDGE-B,Edge Product B,3000,80,3200,0,0,0.35,80,8,40
+2026-05-25,WB,WB-EDGE-03,Low Stock Winner,IQ-EDGE-C,Edge Product C,4000,200,1800,30,45000,0.45,3,2,35
+

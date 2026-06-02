@@ -1,0 +1,11 @@
+date,marketplace,keyword,competitor_brand,product_name,sku,price_rub,rating,reviews_count,organic_position,ad_position,stock_status,title,bullets
+2026-05-27,WB,витамины для энергии,NutraGo,Energy Boost Gummies,WB-BG-C-100,1760,4.69,1900,2,1,in_stock,"Витамины для энергии пастилки","гуарана витамины b12 бодрость"
+2026-05-27,WB,витамины для энергии,ActiveLife,Daily Energy Complex,WB-BG-C-101,1880,4.66,1500,4,3,in_stock,"Комплекс для энергии","коэнзим q10 b6 фокус"
+2026-05-27,Ozon,омега 3 капсулы,OceanLab,Omega 3 1000 mg,OZ-BG-C-200,1390,4.73,2200,2,2,in_stock,"Омега 3 капсулы","epa dha рыбий жир"
+2026-05-27,Ozon,омега 3 капсулы,NordWell,Omega Premium,OZ-BG-C-201,1490,4.69,1700,5,4,in_stock,"Омега премиум","очищенный рыбий жир без запаха"
+2026-05-27,WB,магний для сна,SleepLab,Magnesium Sleep,WB-BG-C-300,1220,4.50,980,6,2,in_stock,"Магний для сна","глицин b6 вечерний прием"
+2026-05-27,WB,магний для сна,CalmNow,Magnesium Glycinate,WB-BG-C-301,1360,4.58,1300,8,5,in_stock,"Магний глицинат","b6 сон расслабление"
+2026-05-27,Ozon,магний b6,MaxMineral,Magnesium B6,OZ-BG-C-400,1340,4.70,1200,3,2,in_stock,"Магний B6 таблетки","нервная система мышцы"
+2026-05-27,Ozon,магний b6,CalmPlus,Magnesium Citrate,OZ-BG-C-401,1460,4.75,1400,5,0,in_stock,"Магний цитрат B6","вечерний прием стресс"
+2026-05-27,WB,коллаген морской,BeautyLab,Marine Collagen Powder,WB-BG-C-500,1890,4.62,2400,4,2,in_stock,"Морской коллаген","пептиды витамин c кожа"
+2026-05-27,WB,коллаген морской,CollaPro,Collagen Peptides,WB-BG-C-501,1990,4.68,2100,7,5,in_stock,"Коллаген пептиды","тип 1 3 гиалуроновая кислота"

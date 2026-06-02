@@ -1,0 +1,76 @@
+{
+  "id": "no-cloud-marketplace-digest",
+  "name": "IQBIQ: демо без Google Cloud",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Ручной запуск",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const spreadsheetId = '1GlrDyHe7haN22Z1fU0JPbWfbh0bgEswAqBZNwE3-apc';\nconst apiBaseUrl = 'http://host.docker.internal:8000';\nconst httpRequest = this.helpers.httpRequest.bind(this.helpers);\n\nfunction csvUrl(sheet) {\n  return `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheet)}`;\n}\n\nfunction parseCsv(text) {\n  const rows = [];\n  let row = [];\n  let cell = '';\n  let quoted = false;\n  for (let i = 0; i < text.length; i++) {\n    const ch = text[i];\n    const next = text[i + 1];\n    if (quoted) {\n      if (ch === '\"' && next === '\"') {\n        cell += '\"';\n        i++;\n      } else if (ch === '\"') {\n        quoted = false;\n      } else {\n        cell += ch;\n      }\n    } else if (ch === '\"') {\n      quoted = true;\n    } else if (ch === ',') {\n      row.push(cell);\n      cell = '';\n    } else if (ch === '\\n') {\n      row.push(cell.replace(/\\r$/, ''));\n      rows.push(row);\n      row = [];\n      cell = '';\n    } else {\n      cell += ch;\n    }\n  }\n  if (cell || row.length) {\n    row.push(cell);\n    rows.push(row);\n  }\n  const headers = (rows.shift() || []).map((value) => String(value).trim());\n  return rows.filter((values) => values.some((value) => String(value).trim())).map((values) => {\n    const item = {};\n    headers.forEach((header, index) => {\n      item[header] = values[index] ?? '';\n    });\n    return item;\n  });\n}\n\nasync function getSheet(sheet) {\n  const text = await httpRequest({\n    method: 'GET',\n    url: csvUrl(sheet),\n    json: false,\n  });\n  return parseCsv(text);\n}\n\nasync function postJson(path, payload) {\n  return await httpRequest({\n    method: 'POST',\n    url: `${apiBaseUrl}${path}`,\n    headers: { 'Content-Type': 'application/json' },\n    body: payload,\n    json: true,\n  });\n}\n\nconst adsDaily = await getSheet('ads_daily');\nconst reviews = await getSheet('reviews');\nconst competitors = await getSheet('competitors');\nconst ourProducts = await getSheet('our_products');\nconst keywordPlan = await getSheet('keyword_plan');\n\nconst ads = await postJson('/ads/report', { rows: adsDaily, target_drr: 0.18 });\nconst reviewDrafts = await postJson('/reviews/drafts', { rows: reviews });\nconst competitor = await postJson('/competitors/opportunities', {\n  competitors,\n  our_products: ourProducts,\n  keyword_plan: keywordPlan,\n});\nconst digest = await postJson('/integrations/telegram/digest', {\n  ads_rows: ads.rows,\n  review_rows: reviewDrafts.replies,\n  ticket_rows: reviewDrafts.tickets,\n  opportunity_rows: competitor.opportunities,\n  task_rows: competitor.tasks,\n});\nconst notion = await postJson('/integrations/notion/tasks', { tasks: competitor.tasks });\n\nreturn [{\n  json: {\n    telegram_digest: digest.text,\n    ads_rows: ads.rows.length,\n    review_replies: reviewDrafts.replies.length,\n    support_tickets: reviewDrafts.tickets.length,\n    competitor_opportunities: competitor.opportunities.length,\n    notion_tasks: notion.tasks,\n  }\n}];"
+      },
+      "id": "run-no-cloud-demo",
+      "name": "Собрать данные и вызвать Python API",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/botTELEGRAM_BOT_TOKEN/sendMessage",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "TELEGRAM_CHAT_ID"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.telegram_digest }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "send-telegram-digest",
+      "name": "Отправить дайджест в Telegram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [760, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const notionToken = 'NOTION_TOKEN';\nconst databaseId = 'NOTION_DATABASE_ID';\nconst httpRequest = this.helpers.httpRequest.bind(this.helpers);\n\nfunction richText(value) {\n  return [{ type: 'text', text: { content: String(value || '') } }];\n}\n\nfunction paragraph(text) {\n  return {\n    object: 'block',\n    type: 'paragraph',\n    paragraph: { rich_text: richText(text) },\n  };\n}\n\nfunction selectProperty(value) {\n  const name = String(value || '').trim();\n  return name ? { select: { name } } : { select: null };\n}\n\nfunction taskId(task) {\n  return String(task.properties?.['Task ID']?.rich_text || task.title || '').trim();\n}\n\nfunction notionProperties(task) {\n  const props = task.properties || {};\n  return {\n    Name: { title: richText(task.title || 'Задача по маркетплейсу') },\n    'Task ID': { rich_text: richText(taskId(task)) },\n    Priority: selectProperty(props.Priority?.select),\n    Owner: selectProperty(props.Owner?.select),\n    'Task Type': selectProperty(props['Task Type']?.select),\n    Impact: selectProperty(props.Impact?.select),\n    SKU: { rich_text: richText(props.SKU?.rich_text) },\n    Keyword: { rich_text: richText(props.Keyword?.rich_text) },\n    'Due In Days': { number: props['Due In Days']?.number ?? null },\n  };\n}\n\nfunction notionPage(task) {\n  return {\n    parent: { database_id: databaseId },\n    properties: notionProperties(task),\n    children: (task.content || []).filter(Boolean).map(paragraph),\n  };\n}\n\nasync function findExistingPage(id) {\n  if (!id) {\n    return null;\n  }\n  const result = await httpRequest({\n    method: 'POST',\n    url: `https://api.notion.com/v1/databases/${databaseId}/query`,\n    headers: {\n      Authorization: `Bearer ${notionToken}`,\n      'Notion-Version': '2022-06-28',\n      'Content-Type': 'application/json',\n    },\n    body: {\n      page_size: 1,\n      filter: {\n        property: 'Task ID',\n        rich_text: { equals: id },\n      },\n    },\n    json: true,\n  });\n  return (result.results || [])[0] || null;\n}\n\nconst created = [];\nconst updated = [];\nfor (const task of $json.notion_tasks || []) {\n  const id = taskId(task);\n  const existing = await findExistingPage(id);\n  if (existing) {\n    const page = await httpRequest({\n      method: 'PATCH',\n      url: `https://api.notion.com/v1/pages/${existing.id}`,\n      headers: {\n        Authorization: `Bearer ${notionToken}`,\n        'Notion-Version': '2022-06-28',\n        'Content-Type': 'application/json',\n      },\n      body: { properties: notionProperties(task) },\n      json: true,\n    });\n    updated.push({ id: page.id, url: page.url, title: task.title });\n  } else {\n    const page = await httpRequest({\n      method: 'POST',\n      url: 'https://api.notion.com/v1/pages',\n      headers: {\n        Authorization: `Bearer ${notionToken}`,\n        'Notion-Version': '2022-06-28',\n        'Content-Type': 'application/json',\n      },\n      body: notionPage(task),\n      json: true,\n    });\n    created.push({ id: page.id, url: page.url, title: task.title });\n  }\n}\n\nreturn [{ json: { created_notion_tasks: created.length, updated_notion_tasks: updated.length, pages: [...created, ...updated] } }];"
+      },
+      "id": "create-notion-tasks",
+      "name": "Создать или обновить задачи в Notion",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 520]
+    }
+  ],
+  "connections": {
+    "Ручной запуск": {
+      "main": [[{ "node": "Собрать данные и вызвать Python API", "type": "main", "index": 0 }]]
+    },
+    "Собрать данные и вызвать Python API": {
+      "main": [[
+        { "node": "Отправить дайджест в Telegram", "type": "main", "index": 0 },
+        { "node": "Создать или обновить задачи в Notion", "type": "main", "index": 0 }
+      ]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "no-cloud-template"
+}

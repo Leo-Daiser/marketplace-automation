@@ -1,0 +1,5 @@
+sku,product_name,price_rub,rating,reviews_count,stock_units,margin_rate
+IQ-EDGE-A,Edge Product A,900,4.2,50,40,0.30
+IQ-EDGE-B,Edge Product B,1200,4.1,80,80,0.35
+IQ-EDGE-C,Edge Product C,1500,4.8,1400,3,0.45
+

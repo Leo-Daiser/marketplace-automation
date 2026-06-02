@@ -1,0 +1,5 @@
+date,marketplace,keyword,competitor_brand,product_name,sku,price_rub,rating,reviews_count,organic_position,ad_position,stock_status,title,bullets
+2026-05-25,WB,edge vitamin,CompetitorA,Vitamin Edge,CE-A,700,4.8,3000,1,1,in_stock,"Edge vitamin complex","energy focus b12"
+2026-05-25,Ozon,edge mineral,CompetitorB,Mineral Edge,CE-B,900,4.7,2500,2,2,in_stock,"Edge mineral complex","magnesium zinc calm"
+2026-05-25,WB,edge energy,CompetitorC,Energy Edge,CE-C,1450,4.75,1600,3,1,in_stock,"Edge energy gummies","guarana b vitamins focus"
+

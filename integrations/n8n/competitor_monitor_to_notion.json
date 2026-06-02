@@ -1,0 +1,101 @@
+{
+  "name": "Мониторинг конкурентов в Notion",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [1],
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "id": "weekly-competitor-cron",
+      "name": "Еженедельно в понедельник 10:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "documentId": "GOOGLE_SHEET_ID",
+        "sheetName": "competitors",
+        "options": {}
+      },
+      "id": "read-competitors",
+      "name": "Прочитать competitors",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [460, 220],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_ME",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8000/competitors/opportunities",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { competitors: $items('Прочитать competitors').map(item => item.json), our_products: [], keyword_plan: [] } }}"
+      },
+      "id": "call-competitor-api",
+      "name": "Вызвать API конкурентов",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": "NOTION_DATABASE_ID",
+        "title": "={{ ($json.tasks || [])[0]?.title || 'SEO-задача по конкурентам' }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Priority",
+              "selectValue": "={{ ($json.tasks || [])[0]?.priority || 'medium' }}"
+            },
+            {
+              "key": "Тип задачи",
+              "selectValue": "={{ ($json.tasks || [])[0]?.task_type || 'seo_content' }}"
+            }
+          ]
+        }
+      },
+      "id": "create-notion-task",
+      "name": "Создать задачу в Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [940, 300],
+      "credentials": {
+        "notionApi": {
+          "id": "REPLACE_ME",
+          "name": "Notion"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Еженедельно в понедельник 10:00": {
+      "main": [[{ "node": "Прочитать competitors", "type": "main", "index": 0 }]]
+    },
+    "Прочитать competitors": {
+      "main": [[{ "node": "Вызвать API конкурентов", "type": "main", "index": 0 }]]
+    },
+    "Вызвать API конкурентов": {
+      "main": [[{ "node": "Создать задачу в Notion", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "template"
+}
