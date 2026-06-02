@@ -74,7 +74,7 @@ STOPWORDS = {
     "без",
     "капсулы",
     "комплекс",
-    "iqbiq",
+    "brand",
     "the",
     "and",
     "with",

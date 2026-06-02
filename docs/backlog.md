@@ -20,7 +20,7 @@
 | Notion | готово | Task payload builder, live task upsert и deduplication по `Task ID` |
 | n8n | готово | Self-host setup, importable workflows, no-cloud live workflow и one-command demo |
 | Тесты | готово | 35 unit tests, regression snapshots, scenario coverage, preflight script |
-| Документация | готово | README, case study, risk register, submission checklist, publication guide, demo checklist |
+| Документация | готово | README, case study, risk register, publication checklist, publication guide, demo checklist |
 | Repository cleanup | готово | `.gitignore`, generated artifacts, secret scan и русские user-facing тексты проверены |
 
 ## Что осталось перед GitHub
@@ -30,8 +30,8 @@
 | P0 | Перенести проект в отдельный repository | Сейчас folder виден как untracked inside parent workspace |
 | P0 | Запустить `.\scripts\preflight.ps1` после переноса | Подтвердить clean checkout behavior |
 | P0 | Проверить `git status --short` | Не допустить секреты, reports и локальный мусор |
-| P1 | Записать короткое demo video | Упростить проверку проекта работодателем |
-| P1 | Заменить GitHub placeholders в тексте отклика | Сделать отклик готовым к отправке |
+| P1 | Записать короткое demo video | Упростить проверку проекта |
+| P1 | Проверить публичные ссылки и screenshots | Подготовить репозиторий к показу |
 
 ## Критерии готовности
 

@@ -2,7 +2,7 @@
 
 ## Планировалось
 
-Довести initial MVP до credible portfolio project под IQBIQ-style role:
+Довести initial MVP до credible portfolio project:
 
 - marketplace ads analytics;
 - review-response automation;
@@ -23,7 +23,7 @@
 - Telegram digest formatter and Notion task payload builder.
 - Domain dataclasses and schema validation.
 - n8n workflow templates and import validation notes.
-- Demo walkthrough, demo video script, submission checklist и GitHub publication guide.
+- Demo walkthrough, demo video script, publication checklist и GitHub publication guide.
 
 ## Качество
 
@@ -57,6 +57,6 @@ python -m json.tool .\integrations\n8n\competitor_monitor_to_notion.json > $null
 1. Перенести проект в отдельный GitHub repository.
 2. Запустить publication checklist.
 3. Записать demo video на 2-3 минуты по `docs/demo_video_script.md`.
-4. Заменить placeholders в `docs/final_application_message.md`.
-5. Отправить отклик.
+4. Проверить публичные ссылки и screenshots.
+5. Опубликовать обновленную версию репозитория.
 

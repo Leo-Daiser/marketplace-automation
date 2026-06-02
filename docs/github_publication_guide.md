@@ -7,7 +7,7 @@
 ## 1. Запустить quality gate
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 $env:PYTHONPATH = ".\src"
 python -m marketplace_automation.cli run-all --data-dir .\data\sample --out-dir .\reports
 python -m unittest discover -s tests
@@ -84,22 +84,22 @@ Build marketplace automation portfolio
 Запускать только после ручной проверки файлов:
 
 ```powershell
-git add iqbiq-marketplace-automation-portfolio
+git add .
 git status --short
 git commit -m "Build marketplace automation portfolio MVP"
 ```
 
 Если проект лежит внутри родительского repo, лучше перенести его в отдельный GitHub repository перед публикацией.
 
-## 8. Что отправить в отклике
+## 8. Что проверить после публикации
 
-Использовать:
+Проверить:
 
-- GitHub repository URL;
-- `README.md`;
-- `docs/demo_walkthrough.md`;
-- `docs/application_pitch.md`;
-- короткое видео по `docs/demo_video_script.md`, если успеешь записать.
+- GitHub repository URL открывается без авторизации;
+- `README.md` отображает screenshots;
+- `docs/demo_walkthrough.md` открывается;
+- `docs/project_pitch.md` описывает проект нейтрально;
+- quick-start команды воспроизводимы локально.
 
 ## 9. Честная формулировка ограничения
 

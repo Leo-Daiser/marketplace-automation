@@ -3,7 +3,7 @@ const SECRET = 'CHANGE_ME_TO_YOUR_SECRET';
 function doGet() {
   return jsonResponse({
     ok: true,
-    service: 'iqbiq-marketplace-automation-sheets-web-app',
+    service: 'marketplace-automation-sheets-web-app',
   });
 }
 

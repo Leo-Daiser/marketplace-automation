@@ -52,7 +52,7 @@ n8n / Telegram / Notion / Google Sheets
    CSV делает демо воспроизводимым и напрямую ложится на Google Sheets. API adapters можно подключать без переписывания use cases.
 
 3. Сгенерированные outputs считаются операционными артефактами.
-   Ревьюер должен открыть `reports/action_plan.md` и понять, что автоматизация рекомендует команде сделать сегодня.
+   Пользователь должен открыть `reports/action_plan.md` и понять, что автоматизация рекомендует команде сделать сегодня.
 
 4. Compliance является частью core logic.
    Для БАДов ответы на отзывы не должны содержать медицинских обещаний, диагнозов, гарантированного эффекта и небезопасных советов.
@@ -91,7 +91,7 @@ Input contracts описаны в `docs/google_sheets_schema.md`. Output contrac
 Перед показом проекта:
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 $env:PYTHONPATH = ".\src"
 python -m marketplace_automation.cli run-all --data-dir .\data\sample --out-dir .\reports
 python -m unittest discover -s tests

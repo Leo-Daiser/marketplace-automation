@@ -115,7 +115,7 @@ const SECRET = 'demo-local-secret-123';
 ## Шаг 4. Скачать входные листы в локальные CSV
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 $env:PYTHONPATH = ".\src"
 
 python -m marketplace_automation.cli sheets-link-pull `

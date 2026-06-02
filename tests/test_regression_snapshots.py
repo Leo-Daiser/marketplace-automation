@@ -84,7 +84,7 @@ class RegressionSnapshotTest(unittest.TestCase):
                 outputs["portfolio_executive_summary"].read_text(encoding="utf-8"),
             )
             self.assertIn(
-                "IQBIQ: дайджест автоматизации маркетплейсов",
+                "Дайджест автоматизации маркетплейсов",
                 outputs["portfolio_telegram_digest"].read_text(encoding="utf-8"),
             )
             self.assertIn(

@@ -35,7 +35,7 @@ class FakeTextTransport:
 class GoogleSheetsNoCloudTest(unittest.TestCase):
     def test_public_csv_store_reads_rows_without_credentials(self) -> None:
         transport = FakeTextTransport(
-            "sku ,orders ,revenue_rub \nIQ-ENERGY-GUM,12,22800\n"
+            "sku ,orders ,revenue_rub \nSKU-ENERGY-GUM,12,22800\n"
         )
         store = PublicCsvGoogleSheetsTableStore(
             PublicCsvSheetsConfig(spreadsheet_id="sheet-id"),
@@ -44,7 +44,7 @@ class GoogleSheetsNoCloudTest(unittest.TestCase):
 
         rows = store.read_table("ads_daily")
 
-        self.assertEqual([{"sku": "IQ-ENERGY-GUM", "orders": "12", "revenue_rub": "22800"}], rows)
+        self.assertEqual([{"sku": "SKU-ENERGY-GUM", "orders": "12", "revenue_rub": "22800"}], rows)
         self.assertIn("sheet-id", transport.requested_urls[0])
         self.assertIn("sheet=ads_daily", transport.requested_urls[0])
 

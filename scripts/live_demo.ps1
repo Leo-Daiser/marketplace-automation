@@ -40,7 +40,7 @@ $telegramChatId = Require-Env "TELEGRAM_CHAT_ID"
 $notionToken = Require-Env "NOTION_TOKEN"
 $notionDatabaseId = Require-Env "NOTION_DATABASE_ID"
 
-Write-Host "Запуск live-демо IQBIQ..."
+Write-Host "Запуск live-демо автоматизации маркетплейсов..."
 
 if (-not (Test-HttpOk "http://localhost:8000/health")) {
     Write-Host "Запускаю Python API на порту 8000..."
@@ -63,7 +63,7 @@ if (-not (Test-HttpOk "http://localhost:5678")) {
     throw "n8n не ответил на http://localhost:5678"
 }
 
-$localWorkflow = Join-Path $env:TEMP "iqbiq_no_cloud_marketplace_digest.local.json"
+$localWorkflow = Join-Path $env:TEMP "marketplace_no_cloud_digest.local.json"
 $workflowJson = Get-Content -Path $WorkflowTemplate -Raw
 $workflowJson = $workflowJson.Replace("TELEGRAM_BOT_TOKEN", $telegramBotToken)
 $workflowJson = $workflowJson.Replace("TELEGRAM_CHAT_ID", $telegramChatId)
@@ -71,13 +71,13 @@ $workflowJson = $workflowJson.Replace("NOTION_TOKEN", $notionToken)
 $workflowJson = $workflowJson.Replace("NOTION_DATABASE_ID", $notionDatabaseId)
 Set-Content -Path $localWorkflow -Value $workflowJson -Encoding UTF8
 
-docker cp $localWorkflow "iqbiq-n8n:/tmp/no_cloud_marketplace_digest.local.json" *> $null
-docker exec iqbiq-n8n n8n import:workflow --input=/tmp/no_cloud_marketplace_digest.local.json *> $null
+docker cp $localWorkflow "marketplace-n8n:/tmp/no_cloud_marketplace_digest.local.json" *> $null
+docker exec marketplace-n8n n8n import:workflow --input=/tmp/no_cloud_marketplace_digest.local.json *> $null
 
-docker stop iqbiq-n8n *> $null
+docker stop marketplace-n8n *> $null
 $executionOutput = docker compose run --rm --no-deps --entrypoint n8n n8n execute --id=$WorkflowId --rawOutput 2>&1
 $exitCode = $LASTEXITCODE
-docker start iqbiq-n8n *> $null
+docker start marketplace-n8n *> $null
 Start-Sleep -Seconds 3
 
 if ($exitCode -ne 0) {

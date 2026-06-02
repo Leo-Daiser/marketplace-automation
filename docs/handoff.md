@@ -20,9 +20,9 @@
 ## Сначала открыть
 
 1. `README.md`
-2. `docs/application_ready_summary.md`
-3. `docs/vacancy_fit_matrix.md`
-4. `docs/final_application_message.md`
+2. `docs/project_status_summary.md`
+3. `docs/capability_matrix.md`
+4. `docs/project_demo_summary.md`
 5. `docs/github_publication_guide.md`
 
 ## Демо-артефакты
@@ -46,8 +46,7 @@ reports/seo_content_tasks.csv
 2. Запустить `.\scripts\preflight.ps1`.
 3. Перегенерировать скриншоты, если доступен `msedge`, `chrome` или `chromium`.
 4. Записать видео на 2-3 минуты по `docs/demo_video_script.md`.
-5. Заменить placeholders в `docs/final_application_message.md`.
-6. Отправить отклик.
+5. Проверить публичные ссылки и screenshots.
 
 ## Что нельзя утверждать
 
@@ -56,7 +55,7 @@ reports/seo_content_tasks.csv
 - Что sample-данные являются реальными клиентскими данными.
 - Что проект готов к production без проверки rate limits, auth, retries и доступа к кабинетам маркетплейсов.
 
-## Сильная формулировка для собеседования
+## Краткая формулировка проекта
 
 ```text
 Я собрал воспроизводимый портфолио-кейс автоматизации маркетплейсов:

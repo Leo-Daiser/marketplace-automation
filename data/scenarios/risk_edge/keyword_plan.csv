@@ -1,5 +1,5 @@
 keyword,marketplace,our_sku,priority,our_current_position,target_position
-edge vitamin,WB,IQ-EDGE-A,high,30,5
-edge mineral,Ozon,IQ-EDGE-B,high,25,5
-edge energy,WB,IQ-EDGE-C,medium,8,4
+edge vitamin,WB,SKU-EDGE-A,high,30,5
+edge mineral,Ozon,SKU-EDGE-B,high,25,5
+edge energy,WB,SKU-EDGE-C,medium,8,4
 

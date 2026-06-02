@@ -1,8 +1,8 @@
-# IQBIQ: портфолио автоматизации маркетплейсов
+# Автоматизация маркетплейсов: портфолио-проект
 
-Портфолио-проект под вакансию автоматизации e-commerce процессов: рекламная аналитика WB/Ozon, работа с отзывами, конкурентный SEO/content мониторинг, Google Sheets, n8n, Telegram, Notion и API-интеграции.
+Портфолио-проект по автоматизации операционной аналитики для e-commerce команды: рекламная аналитика, обработка отзывов, мониторинг конкурентов, Google Sheets, n8n, Telegram, Notion и API-интеграции.
 
-Статус: готов к показу как portfolio case и технический prototype. Это не production rollout на реальных кабинетах WB/Ozon: данные синтетические, а реальные marketplace API вынесены в adapter boundaries.
+Статус: готов к показу как технический prototype. Это не production rollout на реальных кабинетах маркетплейсов: данные синтетические, а внешние сервисы вынесены в integration boundaries.
 
 ## Коротко
 
@@ -24,31 +24,18 @@ flowchart LR
 
 Главная идея: n8n, Telegram, Notion и Google Sheets используются как delivery/orchestration слой, а проверяемая бизнес-логика остается в Python и покрыта тестами.
 
-## Почему это подходит под вакансию IQBIQ
-
-| Требование вакансии | Что реализовано в проекте |
-|---|---|
-| Автоматизация отчетности по рекламе WB/Ozon | Расчет CTR, CPC, CR, ДРР, ROAS, прибыли после рекламы, risk level и next step |
-| Анализ ставок, конверсий, заказов и ДРР | `ads_reporter.py`, `ads_decision_audit.csv`, HTML dashboard, unit economics |
-| AI/no-code/low-code автоматизация | n8n workflows + Python API boundary + payload builders для Telegram/Notion |
-| Make/n8n/Google Sheets/API | Локальный n8n self-host, Google Sheets no-cloud demo, FastAPI endpoints |
-| Автоматизация отзывов | Review agent: классификация, safe reply drafts, support tickets, manual approval |
-| Конкуренты, SEO и контент | Competitor monitor: price/rating/review gaps, ad pressure, SEO/content tasks |
-| Таблицы, финансы, поставки, задачи | Unit economics, data quality checks, action plan, Notion task upsert |
-| Инструкции и регламенты | SOP оператора, demo checklist, GitHub publication guide, risk register |
-
-## Что сделано
+## Что реализовано
 
 | Блок | Результат |
 |---|---|
 | Реклама | Кампании получают рекомендации: снизить ставку, поставить на паузу, исправить карточку, ограничить расход, масштабировать |
 | Unit economics | Учитываются себестоимость, комиссия, логистика, хранение, возвраты, налог, break-even ДРР |
-| Отзывы | Отзывы классифицируются по теме/срочности, создаются обращения в поддержку и safe drafts |
-| Compliance для БАДов | Ответы не публикуются автоматически, risky health cases уходят на manual approval |
+| Отзывы | Отзывы классифицируются по теме/срочности, создаются обращения в поддержку и безопасные drafts |
+| Compliance для health-категорий | Ответы не публикуются автоматически, рискованные случаи уходят на manual approval |
 | Конкуренты | Считаются price index, rating gap, review gap, рекламное давление и opportunity score |
 | Общий план действий | `action_plan.md` объединяет рекламу, отзывы и конкурентов в один список задач |
 | Интеграции | Google Sheets no-cloud, n8n, Telegram live-send, Notion task upsert без дублей |
-| Качество | 35 unit tests, regression snapshots, scenario coverage, preflight, secret scan |
+| Качество | Unit tests, regression snapshots, scenario coverage, preflight, secret scan |
 
 ## Как выглядит работа
 
@@ -97,7 +84,7 @@ HTML dashboard показывает рекламные метрики, риск,
 PowerShell из корня проекта:
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 $env:PYTHONPATH = ".\src"
 python -m marketplace_automation.cli run-all --data-dir .\data\sample --out-dir .\reports
 python -m unittest discover -s tests
@@ -114,7 +101,7 @@ reports/ads_dashboard.html
 
 ## Live-демо
 
-Live-контур уже подготовлен:
+Live-контур подготовлен для локального запуска:
 
 ```text
 публичная Google Sheet
@@ -171,7 +158,7 @@ reports/                      generated outputs, не коммитятся
 | `api.py` | FastAPI boundary для n8n/Make/HTTP сценариев |
 | `notifications.py` | Telegram digest formatter |
 | `notion_payloads.py` | payload builder для Notion tasks |
-| `adapters/` | CSV, Google Sheets, no-cloud Sheets, WB/Ozon API boundaries |
+| `adapters/` | CSV, Google Sheets, no-cloud Sheets, marketplace API boundaries |
 
 ## Интеграции
 
@@ -213,35 +200,23 @@ python -m unittest discover -s tests
 Финальная проверка пройдена.
 ```
 
-## Что говорить на собеседовании
-
-```text
-Я собрал воспроизводимый контур автоматизации маркетплейсов:
-реклама, отзывы, конкурентный SEO, Google Sheets, n8n, Telegram и Notion.
-
-Python отвечает за проверяемую бизнес-логику: ДРР, ROAS, unit economics,
-review compliance, competitor scoring и приоритизацию действий.
-
-n8n используется как оркестратор: читает таблицы, вызывает API и доставляет
-результат в Telegram и Notion. Главный output — action plan, который превращает
-сырые таблицы в задачи для performance, support и SEO/content.
-```
-
 ## Ограничения
 
 - Данные синтетические, чтобы не публиковать коммерческую информацию.
-- Реальные WB/Ozon API показаны как adapter boundary; для production нужны токены seller cabinet.
+- Реальные API маркетплейсов показаны как adapter boundary; для production нужны токены seller cabinet.
 - Telegram/Notion live-demo требует локальных токенов, которые нельзя коммитить.
-- Ответы на отзывы не auto-publish: для БАДов нужен manual approval.
+- Ответы на отзывы не auto-publish: для health-категорий нужен manual approval.
 - Production rollout потребует retries, rate limits, auth, monitoring и калибровки thresholds на реальных данных.
 
 ## Документы
 
-- [docs/case_study.md](docs/case_study.md)
-- [docs/architecture.md](docs/architecture.md)
-- [docs/vacancy_fit_matrix.md](docs/vacancy_fit_matrix.md)
-- [docs/n8n_self_host_setup.md](docs/n8n_self_host_setup.md)
-- [docs/google_sheets_no_cloud_setup.md](docs/google_sheets_no_cloud_setup.md)
-- [docs/risk_register.md](docs/risk_register.md)
-- [docs/submission_checklist.md](docs/submission_checklist.md)
-- [docs/final_application_message.md](docs/final_application_message.md)
+- [Кейс проекта](docs/case_study.md)
+- [Архитектура](docs/architecture.md)
+- [Матрица возможностей](docs/capability_matrix.md)
+- [Локальный n8n self-host](docs/n8n_self_host_setup.md)
+- [Google Sheets без Google Cloud](docs/google_sheets_no_cloud_setup.md)
+- [Реальные интеграции и ограничения](docs/real_integration_feasibility.md)
+- [Риск-регистр](docs/risk_register.md)
+- [Сценарное покрытие](docs/scenario_coverage.md)
+- [SOP оператора](docs/operator_sop.md)
+- [Публикационный чеклист](docs/publication_checklist.md)

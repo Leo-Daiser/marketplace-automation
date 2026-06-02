@@ -38,7 +38,7 @@ src/marketplace_automation/adapters/google_sheets_no_cloud.py
 ## Установка optional dependencies
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 pip install -e ".[sheets]"
 ```
 

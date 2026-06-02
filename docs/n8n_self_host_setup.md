@@ -2,7 +2,7 @@
 
 ## Цель
 
-Этот сценарий запускает n8n локально для собеседования или демо без n8n Cloud, без Google Cloud и без реальных WB/Ozon кабинетов.
+Этот сценарий запускает n8n локально для демо без n8n Cloud, без Google Cloud и без реальных кабинетов маркетплейсов.
 
 Демо-поток:
 
@@ -26,7 +26,7 @@
 В PowerShell:
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -e ".[api]"
@@ -51,7 +51,7 @@ curl http://localhost:8000/health
 В другом PowerShell:
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio\integrations\n8n\self_host"
+cd .\integrations\n8n\self_host
 docker info
 docker compose up -d
 ```
@@ -86,13 +86,13 @@ docker compose up -d
 
 ```powershell
 docker compose ps
-docker ps -a --filter name=iqbiq-n8n
+docker ps -a --filter name=marketplace-n8n
 ```
 
 ## Остановка n8n
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio\integrations\n8n\self_host"
+cd .\integrations\n8n\self_host
 docker compose down
 ```
 
@@ -151,7 +151,7 @@ NOTION_DATABASE_ID
 - Python API отвечает `{"status":"ok"}`;
 - workflow JSON валиден;
 - публичный Google Sheet читается в `data/google_demo`;
-- n8n контейнер `iqbiq-n8n` работает на `http://localhost:5678`;
+- n8n контейнер `marketplace-n8n` работает на `http://localhost:5678`;
 - workflow импортируется в локальный n8n;
 - Telegram live-send работает после `/start` в диалоге с ботом;
 - Notion live task creation работает в demo database;
@@ -160,7 +160,7 @@ NOTION_DATABASE_ID
 
 Особенность n8n 2.x: CLI execution нельзя запускать одновременно с основным server-контейнером, потому что занят task broker port. Для smoke-теста скрипт временно останавливает server-контейнер, запускает workflow одноразовым compose-контейнером и затем возвращает n8n UI обратно.
 
-## Формулировка для собеседования
+## Краткое описание контура
 
 ```text
 n8n здесь используется как оркестратор, а не как место для бизнес-логики.

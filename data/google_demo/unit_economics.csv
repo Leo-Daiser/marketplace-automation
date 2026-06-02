@@ -1,6 +1,6 @@
 sku,product_name,marketplace,price_rub,cogs_rub,marketplace_fee_rate,logistics_rub,storage_rub,return_rate,tax_rate,target_profit_rate
-IQ-ENERGY-GUM,Energy Gummies,WB,1900,720,0.185,95,18,0.045,0.06,0.12
-IQ-OMEGA-90,Omega 90 Capsules,Ozon,1590,610,0.205,105,22,0.055,0.06,0.10
-IQ-SLEEP-MAG,Sleep Magnesium,WB,1290,470,0.190,90,16,0.060,0.06,0.10
-IQ-MAG-B6,Magnesium B6,Ozon,1395,510,0.200,98,20,0.050,0.06,0.11
-IQ-COLLAGEN,Marine Collagen,WB,1990,860,0.210,125,26,0.065,0.06,0.12
+SKU-ENERGY-GUM,Energy Gummies,WB,1900,720,0.185,95,18,0.045,0.06,0.12
+SKU-OMEGA-90,Omega 90 Capsules,Ozon,1590,610,0.205,105,22,0.055,0.06,0.10
+SKU-SLEEP-MAG,Sleep Magnesium,WB,1290,470,0.190,90,16,0.060,0.06,0.10
+SKU-MAG-B6,Magnesium B6,Ozon,1395,510,0.200,98,20,0.050,0.06,0.11
+SKU-COLLAGEN,Marine Collagen,WB,1990,860,0.210,125,26,0.065,0.06,0.12

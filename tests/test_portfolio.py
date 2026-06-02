@@ -27,7 +27,7 @@ class PortfolioSuiteTest(unittest.TestCase):
             telegram_digest = outputs["portfolio_telegram_digest"].read_text(encoding="utf-8")
             self.assertIn("Сводный план действий", action_plan)
             self.assertIn("Управленческая сводка", executive_summary)
-            self.assertIn("IQBIQ: дайджест автоматизации маркетплейсов", telegram_digest)
+            self.assertIn("Дайджест автоматизации маркетплейсов", telegram_digest)
             self.assertIn("реклама", action_plan)
             self.assertIn("отзывы", action_plan)
             self.assertIn("конкуренты", action_plan)

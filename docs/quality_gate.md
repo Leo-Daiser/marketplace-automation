@@ -3,7 +3,7 @@
 Запускать перед отправкой ссылки на портфолио.
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 $env:PYTHONPATH = ".\src"
 python -m marketplace_automation.cli run-all --data-dir .\data\sample --out-dir .\reports
 python -m unittest discover -s tests

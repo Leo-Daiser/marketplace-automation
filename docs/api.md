@@ -5,7 +5,7 @@ API опционален. Он показывает, как n8n/Make/Google Shee
 ## Установка
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -e ".[api]"

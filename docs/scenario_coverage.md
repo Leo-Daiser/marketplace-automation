@@ -38,7 +38,7 @@
 ## Ручной запуск
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 $env:PYTHONPATH = ".\src"
 python -m marketplace_automation.cli run-all --data-dir .\data\scenarios\risk_edge --out-dir .\reports\risk_edge
 python -m marketplace_automation.cli run-all --data-dir .\data\scenarios\balanced_growth --out-dir .\reports\balanced_growth

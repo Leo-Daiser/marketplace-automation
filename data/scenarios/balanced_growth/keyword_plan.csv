@@ -1,6 +1,6 @@
 keyword,marketplace,our_sku,priority,our_current_position,target_position
-витамины для энергии,WB,IQ-ENERGY-GUM,medium,5,3
-омега 3 капсулы,Ozon,IQ-OMEGA-90,medium,8,5
-магний для сна,WB,IQ-SLEEP-MAG,medium,10,7
-магний b6,Ozon,IQ-MAG-B6,low,4,4
-коллаген морской,WB,IQ-COLLAGEN,medium,11,6
+витамины для энергии,WB,SKU-ENERGY-GUM,medium,5,3
+омега 3 капсулы,Ozon,SKU-OMEGA-90,medium,8,5
+магний для сна,WB,SKU-SLEEP-MAG,medium,10,7
+магний b6,Ozon,SKU-MAG-B6,low,4,4
+коллаген морской,WB,SKU-COLLAGEN,medium,11,6

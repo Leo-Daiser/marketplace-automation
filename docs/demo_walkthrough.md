@@ -14,7 +14,7 @@
 ## 1. Запуск полного сценария
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 $env:PYTHONPATH = ".\src"
 python -m marketplace_automation.cli run-all --data-dir .\data\sample --out-dir .\reports
 ```
@@ -159,7 +159,7 @@ python -m compileall -q .\src .\tests
 35 tests OK
 ```
 
-## Рассказ для собеседования
+## Краткий рассказ о проекте
 
 Короткая версия:
 

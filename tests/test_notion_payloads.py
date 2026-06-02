@@ -16,7 +16,7 @@ class NotionPayloadsTest(unittest.TestCase):
             {
                 "task_id": "SEO-omega",
                 "keyword": "омега 3",
-                "our_sku": "IQ-OMEGA",
+                "our_sku": "SKU-OMEGA",
                 "priority": "high",
                 "owner": "seo/content",
                 "impact": "organic_visibility",

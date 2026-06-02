@@ -41,7 +41,7 @@ External systems изолированы за adapters: Google Sheets, WB/Ozon AP
 Команда:
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 $env:PYTHONPATH = ".\src"
 python -m marketplace_automation.cli run-all --data-dir .\data\sample --out-dir .\reports
 ```

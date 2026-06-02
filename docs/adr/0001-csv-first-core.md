@@ -6,7 +6,7 @@
 
 ## Контекст
 
-Вакансия требует автоматизации WB/Ozon, Google Sheets, n8n, AI services и team workflows. Portfolio project должен демонстрироваться без доступа к real client tokens, private sales data и marketplace API credentials.
+Проект должен демонстрировать автоматизацию маркетплейсов, Google Sheets, n8n, AI-ready services и team workflows без доступа к real client tokens, private sales data и marketplace API credentials.
 
 ## Решение
 

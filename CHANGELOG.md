@@ -47,7 +47,7 @@ Preflight passed.
 - Optional FastAPI boundary for n8n/Make-style automation.
 - Telegram and Notion payload builders.
 - Marketplace API adapter boundaries for WB/Ozon-style ads data.
-- Demo walkthrough, video script, publication guide and vacancy fit matrix.
+- Demo walkthrough, video script, publication guide and capability matrix.
 
 ### Quality
 

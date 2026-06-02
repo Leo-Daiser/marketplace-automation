@@ -89,7 +89,7 @@ n8n имеет free self-hosted community edition. n8n Cloud платный по
 
 ## Рекомендуемая demo strategy
 
-Для interview/demo:
+Для portfolio/demo:
 
 1. WB/Ozon оставить на synthetic data и объяснить, что реальные marketplace tokens требуют seller cabinet.
 2. Показать real Telegram Bot API через dry-run digest, если есть bot token.
@@ -97,7 +97,7 @@ n8n имеет free self-hosted community edition. n8n Cloud платный по
 4. Показать Notion task payloads через personal/demo workspace, если есть Notion internal token.
 5. n8n запускать локально, если есть время на setup; иначе показывать importable workflow templates и API payloads.
 
-## Честная формулировка для собеседования
+## Честная формулировка ограничения
 
 ```text
 Я намеренно не добавлял WB/Ozon production credentials в портфолио.

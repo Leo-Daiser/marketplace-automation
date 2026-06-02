@@ -2,7 +2,7 @@
 
 ## Контекст
 
-Проект моделирует операционный workflow для роста бренда нутрицевтиков на маркетплейсах. Задача не только в расчете рекламных метрик, а в превращении разрозненных таблиц в ежедневные решения для performance, support и SEO/content.
+Проект моделирует операционный workflow для роста e-commerce бренда на маркетплейсах. Задача не только в расчете рекламных метрик, а в превращении разрозненных таблиц в ежедневные решения для performance, support и SEO/content.
 
 Кейс намеренно воспроизводится на синтетических данных. Реальные WB/Ozon credentials, доступы Google Sheets и production-workflow n8n считаются внешними интеграциями, а бизнес-логика остается детерминированной и тестируемой.
 
@@ -92,7 +92,7 @@ Portfolio orchestrator объединяет три области в:
 Текущий quality gate:
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 .\scripts\preflight.ps1
 ```
 
@@ -116,14 +116,14 @@ cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio
 
 ## Известные ограничения
 
-- Данные синтетические и не являются реальным датасетом IQBIQ.
+- Данные синтетические и не являются реальным клиентским датасетом.
 - Marketplace API adapters — это integration boundaries, а не live production clients.
 - Ответы на отзывы используют deterministic templates; LLM provider можно добавить позже после согласования tone of voice и юридических ограничений.
 - Дополнительные screenshots можно сгенерировать на машине с доступным browser executable.
 
-## Почему кейс релевантен IQBIQ
+## Почему кейс полезен
 
-Кейс соответствует задачам вакансии:
+Кейс закрывает типовые задачи marketplace operations:
 
 - аналитика рекламы маркетплейсов;
 - решения по ДРР, ROAS, конверсии и прибыльности;

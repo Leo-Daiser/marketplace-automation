@@ -17,7 +17,7 @@ integrations/n8n/competitor_monitor_to_notion.json
 Запустить:
 
 ```powershell
-cd "C:\Users\WORK\Documents\Work Projects\iqbiq-marketplace-automation-portfolio"
+cd marketplace-automation
 python -m json.tool .\integrations\n8n\ads_report_to_telegram.json > $null
 python -m json.tool .\integrations\n8n\review_agent_to_support.json > $null
 python -m json.tool .\integrations\n8n\competitor_monitor_to_notion.json > $null

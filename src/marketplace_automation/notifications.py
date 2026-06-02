@@ -32,7 +32,7 @@ def format_telegram_daily_digest(
     ]
     p0_actions = [row for row in action_rows if row.get("priority") == "P0"]
     lines = [
-        "IQBIQ: дайджест автоматизации маркетплейсов",
+        "Дайджест автоматизации маркетплейсов",
         "",
         f"Расход на рекламу: {money(ads_summary['spend_rub'])}",
         f"Выручка: {money(ads_summary['revenue_rub'])}",
